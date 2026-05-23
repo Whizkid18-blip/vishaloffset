@@ -106,9 +106,9 @@ export default function LegacyPage() {
               className="text-base lg:text-lg leading-relaxed mb-10 max-w-xl"
               style={{ color: "rgba(247,242,234,0.5)", fontWeight: 300 }}
             >
-              Founded by Jaisingh Nimbalkar, formalised by his son Vishal, and now joined by the
-              third generation — the same press, the same standards, three generations of the
-              same family.
+              Co-founded in 1998 by Mr. Vishal Nimbalkar and his father Jaisingh Nimbalkar — and
+              now joined by the third generation. The same press, the same standards, three
+              generations of the same family.
             </motion.p>
 
             <motion.div
@@ -199,22 +199,21 @@ export default function LegacyPage() {
 
             <div className="space-y-6">
               <p style={{ fontSize: "1.35rem", lineHeight: 1.5, color: "#1A1209", fontWeight: 400, fontFamily: "var(--font-cormorant, Georgia, serif)" }}>
-                Three generations of Nimbalkars have stood at the same press. It started with{" "}
+                In 1998, a father and son set up a press together on Ajwa Road.{" "}
                 <strong style={{ fontWeight: 500 }}>
                   <span style={{ color: "#B5882A", fontWeight: 600 }}>J</span>aisingh Nimbalkar
                 </strong>
-                {" "}— the first generation — who brought the family into print. The discipline he
-                set on the press floor still runs the press today.
-              </p>
-              <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300 }}>
-                In 1998, his son{" "}
-                <strong style={{ fontWeight: 500, color: "#1A1209" }}>
+                {" "}and his son{" "}
+                <strong style={{ fontWeight: 500 }}>
                   Mr.&nbsp;<span style={{ color: "#B5882A", fontWeight: 600 }}>V</span>ishal Nimbalkar
                 </strong>
-                {" "}took the press into its modern form — formalising operations on Ajwa Road and
-                turning it into a full-service offset house. Twenty-five years on, Vishal still
-                personally inspects every premium run, signs off every proof, and walks the press
-                at the start and end of every shift.
+                {" "}co-founded Vishal Offset — the first generation and the second, side by side
+                at the same machine.
+              </p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300 }}>
+                Twenty-five years on, Vishal still personally inspects every premium run, signs off
+                every proof, and walks the press at the start and end of every shift — carrying
+                forward the discipline he and his father built into the press from day one.
               </p>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300 }}>
                 Today, the third generation is joining the press.{" "}

@@ -164,18 +164,18 @@ export const TEAM: TeamMember[] = [
   {
     initials: "JN",
     name: "Jaisingh Nimbalkar",
-    role: "Founder · First Generation",
+    role: "Co-Founder · First Generation",
     generation: "1st Generation",
-    bio: "Brought the family into print. The discipline he set on the press floor — patience, precision, ownership over every job — has carried through to every generation that followed.",
-    since: "First Generation",
+    bio: "Co-founded the press in 1998 alongside his son Vishal. The discipline he set on the press floor — patience, precision, ownership over every job — has carried through to every generation that followed.",
+    since: "Co-Founder · 1998",
   },
   {
     initials: "VN",
     name: "Mr. Vishal Nimbalkar",
-    role: "Owner & Master Printer · Second Generation",
+    role: "Co-Founder & Master Printer · Second Generation",
     generation: "2nd Generation",
-    bio: "Took the press into its modern form in 1998 and has run it personally ever since. Still inspects every premium run and oversees every aspect of the business — from the first proof to the final dispatch.",
-    since: "Since 1998",
+    bio: "Co-founded the press in 1998 with his father Jaisingh, and has run it personally ever since. Still inspects every premium run and oversees every aspect of the business — from the first proof to the final dispatch.",
+    since: "Co-Founder · 1998",
   },
   {
     initials: "DN",
@@ -188,8 +188,7 @@ export const TEAM: TeamMember[] = [
 ];
 
 export const TIMELINE = [
-  { year: "Before",  title: "The First Generation",      desc: "Jaisingh Nimbalkar brings the family into print. The standard set on the press floor in those years still runs the press today." },
-  { year: "1998",    title: "Vishal Takes the Press",    desc: "Mr. Vishal Nimbalkar formalises operations on Ajwa Road and turns the press into a full-service offset house." },
+  { year: "1998",    title: "The Press is Founded",      desc: "Mr. Vishal Nimbalkar and his father Jaisingh Nimbalkar establish Vishal Offset together on Ajwa Road — a father-and-son press built on craft, patience, and ownership of every job." },
   { year: "2007",    title: "Production Scales Up",      desc: "Demand from corporate clients drives an upgrade to a high-speed offset press and a comprehensive finishing setup." },
   { year: "2014",    title: "Digital Wide-Format Added", desc: "Roland eco-solvent and digital wide-format added — opening the door to hoardings, standees, and translites." },
   { year: "2019",    title: "Specialty Finishes In-House", desc: "Hot foil stamping, UV coating, and die-cutting brought in-house. Every premium finish now under one roof." },
