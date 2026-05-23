@@ -1,13 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin, Phone, Mail, Clock, Globe, Share2, ExternalLink,
   ArrowUp, MessageCircle,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { NAV_LINKS, SERVICES, CONTACT } from "@/lib/data";
+
+/** Row used inside the "Visit Our Press" contact block. */
+function ContactRow({ Icon, label, children }: { Icon: LucideIcon; label: string; children: ReactNode }) {
+  return (
+    <div className="flex gap-4">
+      <div
+        className="w-9 h-9 flex items-center justify-center shrink-0"
+        style={{ border: "1px solid rgba(181,136,42,0.22)", color: "#B5882A" }}
+      >
+        <Icon className="w-4 h-4" />
+      </div>
+      <div className="flex-1 text-sm leading-relaxed" style={{ fontWeight: 300 }}>
+        <div className="text-[10px] tracking-[0.22em] uppercase mb-1" style={{ color: "rgba(181,136,42,0.55)" }}>
+          {label}
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 /**
  * Map + Footer + Floating CTAs.
@@ -79,29 +100,56 @@ export default function Footer() {
               </h2>
 
               <div className="space-y-5">
-                {[
-                  { Icon: MapPin, label: "Address", text: `${CONTACT.address1}\n${CONTACT.address2}` },
-                  { Icon: Phone,  label: "Phone",   text: `${CONTACT.phone1}\n${CONTACT.phone2}`   },
-                  { Icon: Mail,   label: "Email",   text: CONTACT.email                              },
-                  { Icon: Clock,  label: "Hours",   text: `${CONTACT.hours}\n${CONTACT.hoursAlt}`  },
-                ].map(({ Icon, label, text }) => (
-                  <div key={label} className="flex gap-4">
-                    <div
-                      className="w-9 h-9 flex items-center justify-center shrink-0"
-                      style={{ border: "1px solid rgba(181,136,42,0.22)", color: "#B5882A" }}
-                    >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] tracking-[0.22em] uppercase mb-1" style={{ color: "rgba(181,136,42,0.55)" }}>
-                        {label}
-                      </div>
-                      <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: "rgba(247,242,234,0.7)", fontWeight: 300 }}>
-                        {text}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                {/* Address */}
+                <ContactRow Icon={MapPin} label="Address">
+                  <a
+                    href={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="block whitespace-pre-line transition-colors hover:text-[#C9A45A]"
+                    style={{ color: "rgba(247,242,234,0.7)" }}
+                  >
+                    {`${CONTACT.address1}\n${CONTACT.address2}`}
+                  </a>
+                </ContactRow>
+
+                {/* Phones — both clickable tel: */}
+                <ContactRow Icon={Phone} label="Phone">
+                  <a
+                    href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
+                    className="block transition-colors hover:text-[#C9A45A]"
+                    style={{ color: "rgba(247,242,234,0.7)" }}
+                  >
+                    {CONTACT.phone1}
+                  </a>
+                  <a
+                    href={`tel:${CONTACT.phone2.replace(/\s|-/g, "")}`}
+                    className="block transition-colors hover:text-[#C9A45A]"
+                    style={{ color: "rgba(247,242,234,0.7)" }}
+                  >
+                    {CONTACT.phone2}
+                  </a>
+                </ContactRow>
+
+                {/* Email — mailto: */}
+                <ContactRow Icon={Mail} label="Email">
+                  <a
+                    href={`mailto:${CONTACT.email}`}
+                    className="block transition-colors hover:text-[#C9A45A] break-all"
+                    style={{ color: "rgba(247,242,234,0.7)" }}
+                  >
+                    {CONTACT.email}
+                  </a>
+                </ContactRow>
+
+                {/* Hours — plain text */}
+                <ContactRow Icon={Clock} label="Hours">
+                  <p
+                    className="whitespace-pre-line"
+                    style={{ color: "rgba(247,242,234,0.7)", fontWeight: 300 }}
+                  >
+                    {`${CONTACT.hours}\n${CONTACT.hoursAlt}`}
+                  </p>
+                </ContactRow>
               </div>
 
               <a
@@ -196,20 +244,56 @@ export default function Footer() {
               <div className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ color: "rgba(181,136,42,0.5)" }}>
                 Contact
               </div>
-              <div className="space-y-4">
-                {[
-                  { Icon: MapPin, text: `${CONTACT.address1}\n${CONTACT.address2}` },
-                  { Icon: Phone,  text: `${CONTACT.phone1}\n${CONTACT.phone2}` },
-                  { Icon: Mail,   text: CONTACT.email },
-                  { Icon: Clock,  text: `${CONTACT.hours}\n${CONTACT.hoursAlt}` },
-                ].map(({ Icon, text }) => (
-                  <div key={text} className="flex gap-3">
-                    <Icon className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
-                    <p className="text-[12px] leading-relaxed whitespace-pre-line" style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}>
-                      {text}
-                    </p>
+              <div className="space-y-4 text-[12px] leading-relaxed">
+                <div className="flex gap-3">
+                  <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
+                  <a
+                    href={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="whitespace-pre-line transition-colors hover:text-[#B5882A]"
+                    style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
+                  >
+                    {`${CONTACT.address1}\n${CONTACT.address2}`}
+                  </a>
+                </div>
+
+                <div className="flex gap-3">
+                  <Phone className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
+                  <div>
+                    <a
+                      href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
+                      className="block transition-colors hover:text-[#B5882A]"
+                      style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
+                    >
+                      {CONTACT.phone1}
+                    </a>
+                    <a
+                      href={`tel:${CONTACT.phone2.replace(/\s|-/g, "")}`}
+                      className="block transition-colors hover:text-[#B5882A]"
+                      style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
+                    >
+                      {CONTACT.phone2}
+                    </a>
                   </div>
-                ))}
+                </div>
+
+                <div className="flex gap-3">
+                  <Mail className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
+                  <a
+                    href={`mailto:${CONTACT.email}`}
+                    className="break-all transition-colors hover:text-[#B5882A]"
+                    style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
+                  >
+                    {CONTACT.email}
+                  </a>
+                </div>
+
+                <div className="flex gap-3">
+                  <Clock className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
+                  <p className="whitespace-pre-line" style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}>
+                    {`${CONTACT.hours}\n${CONTACT.hoursAlt}`}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

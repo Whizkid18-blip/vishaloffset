@@ -191,11 +191,11 @@ export const TEAM: TeamMember[] = [
 ];
 
 export const TIMELINE = [
-  { year: "1998", title: "The Press is Founded",          desc: "Vishal Patel establishes Vishal Offset on Ajwa Road with a single small-format press and a commitment to craft." },
-  { year: "2007", title: "Expansion & Second Press",      desc: "Demand from corporate clients drives the acquisition of a high-speed offset press and a finishing suite." },
+  { year: "1998", title: "The Press is Founded",          desc: "Mr. Vishal Nimbalkar establishes Vishal Offset on Ajwa Road with a single small-format press and a commitment to craft." },
+  { year: "2007", title: "Production Scales Up",          desc: "Demand from corporate clients drives an upgrade to a high-speed offset press and a comprehensive finishing setup." },
   { year: "2014", title: "Digital Wide-Format Added",     desc: "Roland eco-solvent and digital wide-format added — opening the door to hoardings, standees, and translites." },
   { year: "2019", title: "Specialty Finishes In-House",   desc: "Hot foil stamping, UV coating, and die-cutting brought in-house. Every premium finish now under one roof." },
-  { year: "2024", title: "25+ Years of Print Craft",      desc: "Over half a million prints delivered. The team continues to grow while the founding standards remain unchanged." },
+  { year: "2024", title: "25+ Years of Print Craft",      desc: "Over half a million prints delivered. The press has evolved — the founding standards remain unchanged." },
 ];
 
 export const VALUES = [

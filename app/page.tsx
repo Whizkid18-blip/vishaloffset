@@ -719,20 +719,20 @@ export default function VishalOffsetPage() {
               </h2>
               <p className="text-base leading-relaxed mb-5" style={{ color: "#5C4A2A", fontWeight: 300 }}>
                 Vishal Offset is a technically sound printing house based in Vadodara, Gujarat.
-                Operating since 2007, our legacy stretches back to 1998 — over 25 years of measured
-                craft, press discipline, and unwavering output quality.
+                Founded in 1998, the press has spent over 25 years building a reputation for
+                measured craft, discipline, and unwavering output quality.
               </p>
               <p className="text-base leading-relaxed mb-10" style={{ color: "#5C4A2A", fontWeight: 300 }}>
-                We serve corporates, institutions, agencies, and individuals across Gujarat. Our
-                fully equipped facility houses offset and digital presses alongside a comprehensive
-                finishing suite — all managed by an experienced team who take pride in every sheet.
+                We serve corporates, institutions, agencies, and individuals across Gujarat. The
+                facility runs an offset press with a comprehensive finishing setup — all overseen
+                personally by the founder, with the discipline that only a hands-on owner brings.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { v: "25+", l: "Years Active",  pct: 100 },
-                  { v: "12+", l: "Press Units",   pct: 80  },
-                  { v: "500+",l: "Clients",        pct: 90  },
+                  { v: "25+", l: "Years Active",       pct: 100 },
+                  { v: "1",   l: "Founder, Hands-On",  pct: 85  },
+                  { v: "500+",l: "Clients",             pct: 90  },
                 ].map((s, i) => (
                   <div key={s.v}>
                     <div className="flex items-baseline justify-between mb-1.5">
@@ -778,10 +778,10 @@ export default function VishalOffsetPage() {
               </div>
 
               {[
-                { Icon: CheckCircle, title: "Consistent Output Quality",    desc: "Every job passes systematic checks at prepress, press, and finishing stages before leaving our facility." },
-                { Icon: Award,       title: "Seasoned Print Professionals", desc: "Our operators bring 10–20 years of hands-on experience — and the judgment to catch what machines miss." },
-                { Icon: Users,       title: "End-to-End Service",           desc: "Design, proofing, production, and delivery — one team, one roof, one point of accountability." },
-                { Icon: Clock3,      title: "Deadline Integrity",           desc: "We treat your deadline as our own. Express turnarounds available for time-critical requirements." },
+                { Icon: CheckCircle, title: "Consistent Output Quality",   desc: "Every job is personally checked at prepress, press, and finishing before it leaves the facility." },
+                { Icon: Award,       title: "Founder-Run Press",           desc: "Twenty-five years of hands-on offset craft — every job receives the founder's personal attention." },
+                { Icon: Users,       title: "End-to-End Service",          desc: "Design, proofing, production, and delivery — one press, one roof, one point of accountability." },
+                { Icon: Clock3,      title: "Deadline Integrity",          desc: "Your deadline is treated as ours. Express turnarounds available for time-critical requirements." },
               ].map(({ Icon, title, desc }, i) => (
                 <motion.div
                   key={title}

@@ -106,8 +106,8 @@ export default function LegacyPage() {
               className="text-base lg:text-lg leading-relaxed mb-10 max-w-xl"
               style={{ color: "rgba(247,242,234,0.55)", fontWeight: 300 }}
             >
-              Twenty-five years of measured ink, paper, and patience. Run by the same family that
-              founded it, staffed by operators who learned offset before digital existed.
+              Twenty-five years of measured ink, paper, and patience. Founded and run by
+              Mr. Vishal Nimbalkar himself — every job still passes through his hands.
             </motion.p>
 
             {/* Mini stats */}
@@ -166,16 +166,54 @@ export default function LegacyPage() {
             className="space-y-6"
             style={{ fontFamily: "var(--font-cormorant, Georgia, serif)" }}
           >
+            {/* Highlighted V & N initials above the story */}
+            <div className="flex items-center gap-4 mb-2">
+              <span
+                style={{
+                  fontFamily: "var(--font-cormorant, Georgia, serif)",
+                  fontSize: "4.5rem",
+                  lineHeight: 0.9,
+                  fontWeight: 400,
+                  color: "#B5882A",
+                  letterSpacing: "0.02em",
+                  fontStyle: "italic",
+                }}
+              >
+                V
+              </span>
+              <span style={{ width: 18, height: 1, background: "rgba(181,136,42,0.45)" }} />
+              <span
+                style={{
+                  fontFamily: "var(--font-cormorant, Georgia, serif)",
+                  fontSize: "4.5rem",
+                  lineHeight: 0.9,
+                  fontWeight: 400,
+                  color: "#B5882A",
+                  letterSpacing: "0.02em",
+                  fontStyle: "italic",
+                }}
+              >
+                N
+              </span>
+              <span className="text-[10px] tracking-[0.3em] uppercase ml-2" style={{ color: "rgba(181,136,42,0.55)" }}>
+                Vishal · Nimbalkar
+              </span>
+            </div>
+
             <p style={{ fontSize: "1.4rem", lineHeight: 1.5, color: "#1A1209", fontWeight: 400 }}>
-              <span style={{ fontStyle: "italic", color: "#B5882A", fontSize: "2.4rem", lineHeight: 0.6, marginRight: "0.2em", float: "left" }}>M</span>
-              r. Vishal Nimbalkar founded the press in 1998 after a decade learning offset craft
+              Mr.&nbsp;
+              <strong style={{ fontWeight: 500, color: "#1A1209" }}>
+                <span style={{ color: "#B5882A", fontWeight: 600 }}>V</span>ishal{" "}
+                <span style={{ color: "#B5882A", fontWeight: 600 }}>N</span>imbalkar
+              </strong>
+              {" "}founded the press in 1998 after a decade learning offset craft
               under Baroda&rsquo;s senior printers. The first press was small, the order book was
               smaller — but the standard was set on day one.
             </p>
             <p style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300, fontFamily: "var(--font-inter, system-ui, sans-serif)" }}>
               Twenty-five years later, that same standard runs the floor. Vishal still personally
               inspects every premium run, signs off every proof, and walks the press at the start
-              and end of every shift. The press has grown — the discipline behind it hasn&rsquo;t.
+              and end of every shift. The press has evolved — the discipline behind it hasn&rsquo;t.
             </p>
             <p style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300, fontFamily: "var(--font-inter, system-ui, sans-serif)" }}>
               We&rsquo;ve printed for Vadodara&rsquo;s biggest conglomerates and its smallest
@@ -531,7 +569,7 @@ export default function LegacyPage() {
             <em style={{ fontStyle: "italic", color: "#C9A45A" }}>press in action.</em>
           </motion.h2>
           <p className="text-sm leading-relaxed mb-10 max-w-md mx-auto" style={{ color: "rgba(247,242,234,0.5)", fontWeight: 300 }}>
-            Visit our facility on Ajwa Road, Vadodara. Walk the floor, meet the team, and see
+            Visit our facility on Ajwa Road, Vadodara. Walk the floor, meet the founder, and see
             what twenty-five years of craft looks like.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
