@@ -13,7 +13,7 @@ import { TEAM, TIMELINE, VALUES, PARTICLES } from "@/lib/data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" as const } },
 };
 
 const VALUE_ICONS = [Award, Heart, Shield, Handshake];
@@ -29,7 +29,7 @@ export default function LegacyPage() {
         style={{ background: "#100D08" }}
       >
         <div
-          className="absolute inset-0 opacity-[0.028]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             backgroundSize: "200px 200px",
@@ -37,7 +37,7 @@ export default function LegacyPage() {
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 50% at 30% 20%, rgba(181,136,42,0.14) 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(ellipse 60% 45% at 30% 20%, rgba(181,136,42,0.1) 0%, transparent 60%)" }}
         />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {PARTICLES.map((p, i) => (
@@ -45,8 +45,8 @@ export default function LegacyPage() {
               key={i}
               className="absolute rounded-full"
               style={{ left: p.x, top: p.y, width: p.s, height: p.s, background: "#C9A45A" }}
-              animate={{ y: [-10, 10, -10], opacity: [0.08, 0.22, 0.08] }}
-              transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: i * 0.38 }}
+              animate={{ y: [-8, 8, -8], opacity: [0.08, 0.18, 0.08] }}
+              transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
             />
           ))}
         </div>
@@ -57,14 +57,14 @@ export default function LegacyPage() {
             transition={{ delay: 0.3, duration: 0.9 }}
             className="lg:col-span-5 order-2 lg:order-1"
           >
-            <TiltCard max={6} scale={1.02}>
+            <TiltCard max={5} scale={1.015}>
               <ImageReveal
                 src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&q=80&auto=format&fit=crop"
                 alt="Vishal Offset press floor heritage"
                 aspect="4/5"
                 tint="#100D08"
                 tintOpacity={0.25}
-                parallax={0.2}
+                parallax={0.15}
               />
             </TiltCard>
           </motion.div>
@@ -74,51 +74,51 @@ export default function LegacyPage() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7 order-1 lg:order-2"
           >
-            <div className="flex items-center gap-4 mb-8" style={{ color: "rgba(181,136,42,0.75)" }}>
+            <div className="flex items-center gap-4 mb-8" style={{ color: "rgba(181,136,42,0.7)" }}>
               <motion.div
                 initial={{ width: 0 }} animate={{ width: 32 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 style={{ height: 1, background: "#B5882A" }}
               />
               <span className="text-[11px] tracking-[0.3em] uppercase">
-                Our Legacy · Since 1998
+                Our Legacy · Three Generations
               </span>
             </div>
             <h1
               className="mb-8 leading-[0.95]"
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(3rem,7.5vw,6.5rem)",
+                fontSize: "clamp(3rem,7vw,6rem)",
                 fontWeight: 300,
                 color: "#F7F2EA",
                 letterSpacing: "-0.02em",
               }}
             >
-              <SplitInline text="A press built on" stagger={0.1} delay={0.2} />
+              <SplitInline text="Three generations" stagger={0.1} delay={0.2} />
               <br />
               <em style={{ fontStyle: "italic", color: "#C9A45A", fontWeight: 400 }}>
-                <SplitInline text="craft." stagger={0.12} delay={0.55} />
+                <SplitInline text="at the press." stagger={0.12} delay={0.55} />
               </em>
             </h1>
             <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.6 }}
               className="text-base lg:text-lg leading-relaxed mb-10 max-w-xl"
-              style={{ color: "rgba(247,242,234,0.55)", fontWeight: 300 }}
+              style={{ color: "rgba(247,242,234,0.5)", fontWeight: 300 }}
             >
-              Twenty-five years of measured ink, paper, and patience. Founded and run by
-              Mr. Vishal Nimbalkar himself — every job still passes through his hands.
+              Founded by Jaisingh Nimbalkar, formalised by his son Vishal, and now joined by the
+              third generation — the same press, the same standards, three generations of the
+              same family.
             </motion.p>
 
-            {/* Mini stats */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.6 }}
               className="flex flex-wrap gap-10"
             >
               {[
-                { num: 25,  suffix: "+",  label: "Years" },
-                { num: 4,   suffix: "",   label: "Generations of Craft" },
+                { num: 3,   suffix: "",   label: "Generations" },
+                { num: 25,  suffix: "+",  label: "Years on Ajwa Road" },
                 { num: 500, suffix: "+",  label: "Long-Term Clients" },
               ].map((s) => (
                 <div key={s.label}>
@@ -140,92 +140,103 @@ export default function LegacyPage() {
         </div>
       </section>
 
-      {/* ── FOUNDER STORY ──────────────────────────────────────────── */}
-      <section className="py-28 lg:py-36" style={{ background: "#F7F2EA" }}>
+      {/* ── FAMILY STORY ───────────────────────────────────────────── */}
+      <section className="py-24 lg:py-32" style={{ background: "#F7F2EA" }}>
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
             className="text-center mb-14"
           >
             <p className="text-[11px] tracking-[0.28em] uppercase mb-3" style={{ color: "#B5882A" }}>
-              Founder&rsquo;s Story
+              The Family Story
             </p>
             <h2
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2rem,4.5vw,3.4rem)",
                 fontWeight: 400, color: "#1A1209", lineHeight: 1.05,
               }}
             >
-              The press that <em style={{ fontStyle: "italic", color: "#B5882A" }}>Vishal built</em>
+              The press the <em style={{ fontStyle: "italic", color: "#B5882A" }}>Nimbalkars built</em>
             </h2>
           </motion.div>
 
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="space-y-6"
-            style={{ fontFamily: "var(--font-cormorant, Georgia, serif)" }}
           >
-            {/* Highlighted V & N initials above the story */}
-            <div className="flex items-center gap-4 mb-2">
-              <span
-                style={{
-                  fontFamily: "var(--font-cormorant, Georgia, serif)",
-                  fontSize: "4.5rem",
-                  lineHeight: 0.9,
-                  fontWeight: 400,
-                  color: "#B5882A",
-                  letterSpacing: "0.02em",
-                  fontStyle: "italic",
-                }}
-              >
-                V
-              </span>
-              <span style={{ width: 18, height: 1, background: "rgba(181,136,42,0.45)" }} />
-              <span
-                style={{
-                  fontFamily: "var(--font-cormorant, Georgia, serif)",
-                  fontSize: "4.5rem",
-                  lineHeight: 0.9,
-                  fontWeight: 400,
-                  color: "#B5882A",
-                  letterSpacing: "0.02em",
-                  fontStyle: "italic",
-                }}
-              >
-                N
-              </span>
-              <span className="text-[10px] tracking-[0.3em] uppercase ml-2" style={{ color: "rgba(181,136,42,0.55)" }}>
-                Vishal · Nimbalkar
-              </span>
+            {/* J · V · D initials row */}
+            <div className="flex items-center justify-center gap-6 mb-12 flex-wrap">
+              {[
+                { letter: "J", name: "Jaisingh" },
+                { letter: "V", name: "Vishal"  },
+                { letter: "D", name: "Durva"   },
+              ].map((g, i) => (
+                <div key={g.letter} className="flex items-center gap-6">
+                  <div className="text-center">
+                    <div
+                      style={{
+                        fontFamily: "var(--font-cormorant, Georgia, serif)",
+                        fontSize: "3.6rem",
+                        lineHeight: 1,
+                        fontWeight: 400,
+                        color: "#B5882A",
+                        letterSpacing: "0.02em",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {g.letter}
+                    </div>
+                    <div className="mt-2 text-[10px] tracking-[0.25em] uppercase" style={{ color: "rgba(181,136,42,0.65)" }}>
+                      {g.name}
+                    </div>
+                  </div>
+                  {i < 2 && (
+                    <span className="w-8 h-px" style={{ background: "rgba(181,136,42,0.4)" }} />
+                  )}
+                </div>
+              ))}
             </div>
 
-            <p style={{ fontSize: "1.4rem", lineHeight: 1.5, color: "#1A1209", fontWeight: 400 }}>
-              Mr.&nbsp;
-              <strong style={{ fontWeight: 500, color: "#1A1209" }}>
-                <span style={{ color: "#B5882A", fontWeight: 600 }}>V</span>ishal{" "}
-                <span style={{ color: "#B5882A", fontWeight: 600 }}>N</span>imbalkar
-              </strong>
-              {" "}founded the press in 1998 after a decade learning offset craft
-              under Baroda&rsquo;s senior printers. The first press was small, the order book was
-              smaller — but the standard was set on day one.
-            </p>
-            <p style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300, fontFamily: "var(--font-inter, system-ui, sans-serif)" }}>
-              Twenty-five years later, that same standard runs the floor. Vishal still personally
-              inspects every premium run, signs off every proof, and walks the press at the start
-              and end of every shift. The press has evolved — the discipline behind it hasn&rsquo;t.
-            </p>
-            <p style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300, fontFamily: "var(--font-inter, system-ui, sans-serif)" }}>
-              We&rsquo;ve printed for Vadodara&rsquo;s biggest conglomerates and its smallest
-              start-ups. The work that leaves our door is the same in either case — because the
-              press doesn&rsquo;t know who you are. It only knows what you asked for.
-            </p>
+            <div className="space-y-6">
+              <p style={{ fontSize: "1.35rem", lineHeight: 1.5, color: "#1A1209", fontWeight: 400, fontFamily: "var(--font-cormorant, Georgia, serif)" }}>
+                Three generations of Nimbalkars have stood at the same press. It started with{" "}
+                <strong style={{ fontWeight: 500 }}>
+                  <span style={{ color: "#B5882A", fontWeight: 600 }}>J</span>aisingh Nimbalkar
+                </strong>
+                {" "}— the first generation — who brought the family into print. The discipline he
+                set on the press floor still runs the press today.
+              </p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300 }}>
+                In 1998, his son{" "}
+                <strong style={{ fontWeight: 500, color: "#1A1209" }}>
+                  Mr.&nbsp;<span style={{ color: "#B5882A", fontWeight: 600 }}>V</span>ishal Nimbalkar
+                </strong>
+                {" "}took the press into its modern form — formalising operations on Ajwa Road and
+                turning it into a full-service offset house. Twenty-five years on, Vishal still
+                personally inspects every premium run, signs off every proof, and walks the press
+                at the start and end of every shift.
+              </p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300 }}>
+                Today, the third generation is joining the press.{" "}
+                <strong style={{ fontWeight: 500, color: "#1A1209" }}>
+                  <span style={{ color: "#B5882A", fontWeight: 600 }}>D</span>urva Nimbalkar
+                </strong>
+                {" "}is carrying the family craft forward — and leading{" "}
+                <em style={{ color: "#B5882A", fontStyle: "italic" }}>Sajavvat</em>, the creative
+                wing built around custom envelopes, decor, and celebratory gifting.
+              </p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#5C4A2A", fontWeight: 300 }}>
+                We&rsquo;ve printed for Vadodara&rsquo;s biggest conglomerates and its smallest
+                start-ups. The work that leaves our door is the same in either case — because the
+                press doesn&rsquo;t know who you are. It only knows what you asked for.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ── TIMELINE ───────────────────────────────────────────────── */}
-      <section className="py-28 lg:py-36" style={{ background: "#100D08" }}>
+      <section className="py-24 lg:py-32" style={{ background: "#100D08" }}>
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -237,17 +248,15 @@ export default function LegacyPage() {
             <h2
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2rem,4.5vw,3.4rem)",
                 fontWeight: 400, color: "#F7F2EA", lineHeight: 1.05,
               }}
             >
-              A quarter-century<br />
-              <em style={{ fontStyle: "italic", color: "#C9A45A" }}>at the press</em>
+              The press <em style={{ fontStyle: "italic", color: "#C9A45A" }}>through time</em>
             </h2>
           </motion.div>
 
           <div className="relative">
-            {/* Animated vertical line */}
             <motion.div
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
@@ -262,14 +271,13 @@ export default function LegacyPage() {
                 const isLeft = i % 2 === 0;
                 return (
                   <motion.div
-                    key={t.year}
+                    key={t.year + t.title}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.7 }}
                     viewport={{ once: true }}
                     className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16"
                   >
-                    {/* Marker dot */}
                     <div
                       className="absolute left-0 lg:left-1/2 top-2 w-[26px] h-[26px] rounded-full -translate-x-1/2 flex items-center justify-center"
                       style={{ background: "#100D08", border: "1px solid rgba(181,136,42,0.4)" }}
@@ -280,14 +288,11 @@ export default function LegacyPage() {
                       />
                     </div>
 
-                    {/* Content (alternating sides on desktop) */}
-                    <div
-                      className={`pl-12 lg:pl-0 ${isLeft ? "lg:pr-12 lg:text-right" : "lg:col-start-2 lg:pl-12"}`}
-                    >
+                    <div className={`pl-12 lg:pl-0 ${isLeft ? "lg:pr-12 lg:text-right" : "lg:col-start-2 lg:pl-12"}`}>
                       <div
                         style={{
                           fontFamily: "var(--font-cormorant, Georgia, serif)",
-                          fontSize: "2.4rem", fontWeight: 300, color: "#C9A45A", lineHeight: 1,
+                          fontSize: "2.2rem", fontWeight: 300, color: "#C9A45A", lineHeight: 1,
                         }}
                       >
                         {t.year}
@@ -296,7 +301,7 @@ export default function LegacyPage() {
                         className="mt-2 mb-3"
                         style={{
                           fontFamily: "var(--font-cormorant, Georgia, serif)",
-                          fontSize: "1.4rem", fontWeight: 500, color: "#F7F2EA",
+                          fontSize: "1.35rem", fontWeight: 500, color: "#F7F2EA",
                         }}
                       >
                         {t.title}
@@ -313,111 +318,107 @@ export default function LegacyPage() {
         </div>
       </section>
 
-      {/* ── FOUNDER FEATURE ────────────────────────────────────────── */}
-      <section className="py-28 lg:py-36" style={{ background: "#FAF7F1" }}>
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+      {/* ── 3 GENERATIONS — lineage cards ──────────────────────────── */}
+      <section className="py-24 lg:py-32" style={{ background: "#FAF7F1" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
             className="text-center mb-16"
           >
             <p className="text-[11px] tracking-[0.28em] uppercase mb-3" style={{ color: "#B5882A" }}>
-              The Founder
+              The Family
             </p>
             <h2
-              className="mb-5"
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2rem,4.5vw,3.4rem)",
                 fontWeight: 400, color: "#1A1209", lineHeight: 1.05,
               }}
             >
-              The hand behind<br />
-              <em style={{ fontStyle: "italic", color: "#B5882A" }}>every print</em>
+              Three generations,<br />
+              <em style={{ fontStyle: "italic", color: "#B5882A" }}>one press</em>
             </h2>
           </motion.div>
 
-          {TEAM.map((m) => (
-            <motion.div
-              key={m.name}
-              variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            >
-              <TiltCard max={5} scale={1.015}>
-                <div
-                  className="relative overflow-hidden grid grid-cols-1 md:grid-cols-12 gap-0"
-                  style={{ background: "#FFFFFF", border: "1px solid rgba(181,136,42,0.18)" }}
-                >
-                  {/* Monogram side */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {TEAM.map((m, i) => (
+              <motion.div
+                key={m.name}
+                variants={fadeUp} initial="hidden" whileInView="show"
+                viewport={{ once: true }} transition={{ delay: i * 0.12 }}
+              >
+                <TiltCard max={6} scale={1.02}>
                   <div
-                    className="md:col-span-5 relative flex items-center justify-center py-16 md:py-0"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(181,136,42,0.06) 0%, rgba(181,136,42,0.01) 100%)",
-                      borderRight: "1px solid rgba(181,136,42,0.12)",
-                    }}
+                    className="relative h-full overflow-hidden"
+                    style={{ background: "#FFFFFF", border: "1px solid rgba(181,136,42,0.18)" }}
                   >
-                    {/* Decorative corner rules */}
-                    <span className="absolute top-4 left-4 w-6 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute top-4 left-4 h-6 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute top-4 right-4 w-6 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute top-4 right-4 h-6 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute bottom-4 left-4 w-6 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute bottom-4 left-4 h-6 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute bottom-4 right-4 w-6 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-                    <span className="absolute bottom-4 right-4 h-6 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
-
-                    {/* Big monogram */}
-                    <div className="text-center">
-                      <div
-                        style={{
-                          fontFamily: "var(--font-cormorant, Georgia, serif)",
-                          fontSize: "clamp(5rem, 10vw, 8rem)",
-                          fontWeight: 300, color: "#B5882A", lineHeight: 1,
-                          letterSpacing: "0.05em",
-                        }}
-                      >
-                        {m.initials}
-                      </div>
-                      <div className="w-10 h-px mx-auto my-4" style={{ background: "rgba(181,136,42,0.4)" }} />
-                      <div className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(181,136,42,0.6)" }}>
-                        Est. 1998
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bio side */}
-                  <div className="md:col-span-7 p-10 lg:p-14 flex flex-col justify-center">
-                    <div className="text-[10px] tracking-[0.25em] uppercase mb-3" style={{ color: "#B5882A" }}>
-                      Founder & Master Printer
-                    </div>
-                    <h3
-                      className="mb-2"
+                    {/* Top — gold gradient panel with big monogram */}
+                    <div
+                      className="relative flex items-center justify-center py-12"
                       style={{
-                        fontFamily: "var(--font-cormorant, Georgia, serif)",
-                        fontSize: "2.2rem", fontWeight: 500, color: "#1A1209", lineHeight: 1.1,
+                        background: "linear-gradient(135deg, rgba(181,136,42,0.07) 0%, rgba(181,136,42,0.015) 100%)",
+                        borderBottom: "1px solid rgba(181,136,42,0.12)",
                       }}
                     >
-                      {m.name}
-                    </h3>
-                    <div className="text-[11px] tracking-wider mb-6" style={{ color: "rgba(139,115,85,0.7)" }}>
-                      {m.since} · Vadodara, Gujarat
+                      <span className="absolute top-3 left-3 w-5 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute top-3 left-3 h-5 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute top-3 right-3 w-5 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute top-3 right-3 h-5 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute bottom-3 left-3 w-5 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute bottom-3 left-3 h-5 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute bottom-3 right-3 w-5 h-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+                      <span className="absolute bottom-3 right-3 h-5 w-px" style={{ background: "rgba(181,136,42,0.5)" }} />
+
+                      <div className="text-center">
+                        <div
+                          style={{
+                            fontFamily: "var(--font-cormorant, Georgia, serif)",
+                            fontSize: "5rem", fontWeight: 300, color: "#B5882A", lineHeight: 1,
+                            letterSpacing: "0.05em",
+                          }}
+                        >
+                          {m.initials}
+                        </div>
+                        <div className="w-8 h-px mx-auto my-3" style={{ background: "rgba(181,136,42,0.35)" }} />
+                        <div className="text-[10px] tracking-[0.28em] uppercase" style={{ color: "rgba(181,136,42,0.65)" }}>
+                          {m.generation}
+                        </div>
+                      </div>
                     </div>
-                    <div className="w-8 h-px mb-6" style={{ background: "#B5882A" }} />
-                    <p className="text-base leading-relaxed" style={{ color: "#5C4A2A", fontWeight: 300 }}>
-                      {m.bio}
-                    </p>
+
+                    {/* Bottom — name + role + bio */}
+                    <div className="p-7 lg:p-8">
+                      <h3
+                        className="mb-1"
+                        style={{
+                          fontFamily: "var(--font-cormorant, Georgia, serif)",
+                          fontSize: "1.5rem", fontWeight: 500, color: "#1A1209", lineHeight: 1.15,
+                        }}
+                      >
+                        {m.name}
+                      </h3>
+                      <div className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: "#B5882A" }}>
+                        {m.role}
+                      </div>
+                      <div className="w-6 h-px mb-4" style={{ background: "rgba(181,136,42,0.3)" }} />
+                      <p className="text-sm leading-relaxed" style={{ color: "#8B7355", fontWeight: 300 }}>
+                        {m.bio}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </TiltCard>
-            </motion.div>
-          ))}
+                </TiltCard>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── VALUES ─────────────────────────────────────────────────── */}
-      <section className="py-28 lg:py-36" style={{ background: "#100D08" }}>
+      <section className="py-24 lg:py-32" style={{ background: "#100D08" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="mb-16 max-w-3xl"
+            className="mb-14 max-w-3xl"
           >
             <p className="text-[11px] tracking-[0.28em] uppercase mb-3" style={{ color: "#B5882A" }}>
               Our Values
@@ -425,7 +426,7 @@ export default function LegacyPage() {
             <h2
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2rem,4.5vw,3.4rem)",
                 fontWeight: 400, color: "#F7F2EA", lineHeight: 1.05,
               }}
             >
@@ -464,7 +465,7 @@ export default function LegacyPage() {
                     className="mb-3"
                     style={{
                       fontFamily: "var(--font-cormorant, Georgia, serif)",
-                      fontSize: "1.25rem", fontWeight: 500, color: "#F7F2EA",
+                      fontSize: "1.2rem", fontWeight: 500, color: "#F7F2EA",
                     }}
                   >
                     {v.title}
@@ -480,7 +481,7 @@ export default function LegacyPage() {
       </section>
 
       {/* ── FACILITY GALLERY ───────────────────────────────────────── */}
-      <section className="py-28 lg:py-36" style={{ background: "#FAF7F1" }}>
+      <section className="py-24 lg:py-32" style={{ background: "#FAF7F1" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -492,7 +493,7 @@ export default function LegacyPage() {
             <h2
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2rem,4.5vw,3.4rem)",
                 fontWeight: 400, color: "#1A1209", lineHeight: 1.05,
               }}
             >
@@ -502,36 +503,16 @@ export default function LegacyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             <div className="md:col-span-7">
-              <ImageReveal
-                src="https://images.unsplash.com/photo-1601933470928-c5d9ad7e63d8?w=1400&q=80&auto=format&fit=crop"
-                alt="Press floor wide"
-                aspect="16/10"
-                parallax={0.15}
-              />
+              <ImageReveal src="https://images.unsplash.com/photo-1601933470928-c5d9ad7e63d8?w=1400&q=80&auto=format&fit=crop" alt="Press floor" aspect="16/10" parallax={0.12} />
             </div>
             <div className="md:col-span-5">
-              <ImageReveal
-                src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=900&q=80&auto=format&fit=crop"
-                alt="Print materials close-up"
-                aspect="16/10"
-                parallax={0.12}
-              />
+              <ImageReveal src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=900&q=80&auto=format&fit=crop"  alt="Print close-up" aspect="16/10" parallax={0.1} />
             </div>
             <div className="md:col-span-5">
-              <ImageReveal
-                src="https://images.unsplash.com/photo-1568667256549-094345857637?w=900&q=80&auto=format&fit=crop"
-                alt="Finished books"
-                aspect="4/3"
-                parallax={0.15}
-              />
+              <ImageReveal src="https://images.unsplash.com/photo-1568667256549-094345857637?w=900&q=80&auto=format&fit=crop"  alt="Finished books" aspect="4/3" parallax={0.12} />
             </div>
             <div className="md:col-span-7">
-              <ImageReveal
-                src="https://images.unsplash.com/photo-1597733336794-12d05021d510?w=1400&q=80&auto=format&fit=crop"
-                alt="Print finishing"
-                aspect="4/3"
-                parallax={0.13}
-              />
+              <ImageReveal src="https://images.unsplash.com/photo-1597733336794-12d05021d510?w=1400&q=80&auto=format&fit=crop" alt="Finishing" aspect="4/3" parallax={0.1} />
             </div>
           </div>
         </div>
@@ -542,26 +523,16 @@ export default function LegacyPage() {
         className="py-24 relative overflow-hidden"
         style={{ background: "#100D08" }}
       >
-        <motion.div
-          className="absolute pointer-events-none"
-          style={{
-            width: "50vw", height: "50vw", borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(181,136,42,0.08) 0%, transparent 70%)",
-            top: "-20%", right: "-10%",
-          }}
-          animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
+        <div className="relative max-w-3xl mx-auto px-6 lg:px-10 text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             style={{
               fontFamily: "var(--font-cormorant, Georgia, serif)",
-              fontSize: "clamp(2rem,4.5vw,3.4rem)",
-              fontWeight: 400, color: "#F7F2EA", lineHeight: 1.15,
+              fontSize: "clamp(1.9rem,4vw,3rem)",
+              fontWeight: 400, color: "#F7F2EA", lineHeight: 1.2,
             }}
             className="mb-6"
           >
@@ -574,16 +545,14 @@ export default function LegacyPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <MagneticButton
-              as="a"
-              href="/#visit"
+              as="a" href="/#visit"
               className="px-8 py-3.5 text-[11px] tracking-[0.2em] uppercase font-medium"
               style={{ background: "#B5882A", color: "#fff" }}
             >
               See Our Location <ArrowRight className="w-3.5 h-3.5 ml-3" />
             </MagneticButton>
             <MagneticButton
-              as="a"
-              href="/#contact-form"
+              as="a" href="/#contact-form"
               className="px-8 py-3.5 text-[11px] tracking-[0.2em] uppercase font-medium border"
               style={{ borderColor: "rgba(247,242,234,0.22)", color: "rgba(247,242,234,0.7)" }}
             >

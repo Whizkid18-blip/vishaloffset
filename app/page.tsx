@@ -27,21 +27,19 @@ const EMPTY_FORM: FormState = {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" as const } },
 };
 
-// ─── PAGE ─────────────────────────────────────────────────────────────────────
-
 export default function VishalOffsetPage() {
-  const [activeCategory, setActiveCategory]   = useState("All");
-  const [submitted, setSubmitted]             = useState(false);
-  const [form, setForm]                       = useState<FormState>(EMPTY_FORM);
+  const [activeCategory, setActiveCategory]     = useState("All");
+  const [submitted, setSubmitted]               = useState(false);
+  const [form, setForm]                         = useState<FormState>(EMPTY_FORM);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => {
       setActiveTestimonial((p) => (p + 1) % TESTIMONIALS.length);
-    }, 5000);
+    }, 6500);
     return () => clearInterval(t);
   }, []);
 
@@ -50,11 +48,6 @@ export default function VishalOffsetPage() {
   };
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleEnquire = (serviceTitle?: string) => {
-    if (serviceTitle) setForm((p) => ({ ...p, service: serviceTitle }));
-    scrollToContact();
   };
 
   const filtered =
@@ -72,45 +65,35 @@ export default function VishalOffsetPage() {
         className="relative min-h-screen flex flex-col justify-center overflow-hidden"
         style={{ background: "#100D08" }}
       >
-        {/* Noise */}
         <div
-          className="absolute inset-0 opacity-[0.028]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             backgroundSize: "200px 200px",
           }}
         />
+        {/* Single soft top glow — gentler than before */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(181,136,42,0.1) 0%, transparent 65%)" }}
-        />
-        <motion.div
-          className="absolute pointer-events-none"
-          style={{
-            width: "55vw", height: "55vw", borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(181,136,42,0.055) 0%, transparent 70%)",
-            top: "-20%", right: "-8%",
-          }}
-          animate={{ scale: [1, 1.12, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(181,136,42,0.07) 0%, transparent 60%)" }}
         />
 
-        {/* Floating particles */}
+        {/* Minimalist particles — only 4 now */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {PARTICLES.map((p, i) => (
             <motion.div
               key={i}
               className="absolute rounded-full"
               style={{ left: p.x, top: p.y, width: p.s, height: p.s, background: "#C9A45A" }}
-              animate={{ y: [-10, 10, -10], opacity: [0.08, 0.22, 0.08] }}
-              transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: i * 0.38 }}
+              animate={{ y: [-8, 8, -8], opacity: [0.08, 0.18, 0.08] }}
+              transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
             />
           ))}
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-36 pb-28 w-full">
           <motion.div variants={fadeUp} initial="hidden" animate="show" className="max-w-5xl">
-            <div className="flex items-center gap-4 mb-10" style={{ color: "rgba(181,136,42,0.75)" }}>
+            <div className="flex items-center gap-4 mb-10" style={{ color: "rgba(181,136,42,0.7)" }}>
               <motion.div
                 initial={{ width: 0 }} animate={{ width: 32 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -121,7 +104,6 @@ export default function VishalOffsetPage() {
               </span>
             </div>
 
-            {/* Hero headline with word-stagger split */}
             <h1
               className="mb-8 leading-[0.88]"
               style={{
@@ -140,10 +122,10 @@ export default function VishalOffsetPage() {
             </h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.7 }}
               className="mb-12 max-w-xl leading-relaxed"
-              style={{ color: "rgba(247,242,234,0.4)", fontSize: "1rem", fontWeight: 300, letterSpacing: "0.01em" }}
+              style={{ color: "rgba(247,242,234,0.42)", fontSize: "1rem", fontWeight: 300, letterSpacing: "0.01em" }}
             >
               Precision offset printing for brands, businesses, and institutions
               across Gujarat — where craft meets deadline, every time.
@@ -162,16 +144,15 @@ export default function VishalOffsetPage() {
                 View Our Work <ArrowRight className="w-3.5 h-3.5 ml-3" />
               </MagneticButton>
               <MagneticButton
-                onClick={() => scrollToSection("services")}
+                as="a" href="/services"
                 className="px-8 py-3.5 text-[11px] tracking-[0.2em] uppercase font-medium border transition-all duration-300"
                 style={{ borderColor: "rgba(247,242,234,0.22)", color: "rgba(247,242,234,0.55)" }}
               >
-                Our Services
+                Services
               </MagneticButton>
             </motion.div>
           </motion.div>
 
-          {/* Counters */}
           <motion.div
             variants={fadeUp} initial="hidden" animate="show"
             transition={{ delay: 1.7 }}
@@ -216,117 +197,61 @@ export default function VishalOffsetPage() {
             className="w-px h-10"
             style={{ background: "linear-gradient(to bottom, rgba(181,136,42,0.5), transparent)" }}
             animate={{ scaleY: [0, 1, 0], originY: 0 }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
       </section>
 
-      {/* ── SERVICES ───────────────────────────────────────────────── */}
-      <section id="services" className="py-28 lg:py-36" style={{ background: "#F7F2EA" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      {/* ── SERVICES TEASER — slim link strip, not the full grid ── */}
+      <section className="py-20 lg:py-28" style={{ background: "#F7F2EA" }}>
+        <div className="max-w-5xl mx-auto px-6 lg:px-10 text-center">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="flex items-end justify-between mb-16 pb-6"
-            style={{ borderBottom: "1px solid rgba(181,136,42,0.18)" }}
           >
-            <div>
-              <p className="text-[11px] tracking-[0.28em] uppercase mb-3" style={{ color: "#B5882A" }}>
-                Our Services
-              </p>
-              <h2
-                style={{
-                  fontFamily: "var(--font-cormorant, Georgia, serif)",
-                  fontSize: "clamp(2.2rem,5vw,3.8rem)",
-                  fontWeight: 400, color: "#1A1209", lineHeight: 1.05, letterSpacing: "-0.01em",
-                }}
-              >
-                Print Solutions for
-                <br />
-                <em style={{ fontStyle: "italic", color: "#B5882A" }}>Every Need</em>
-              </h2>
-            </div>
-            <p
-              className="hidden lg:block max-w-xs text-sm leading-relaxed text-right"
-              style={{ color: "#8B7355", fontWeight: 300 }}
-            >
-              From a single business card to a full-scale campaign — crafted with equal care.
+            <p className="text-[11px] tracking-[0.28em] uppercase mb-4" style={{ color: "#B5882A" }}>
+              Services
             </p>
-          </motion.div>
+            <h2
+              className="mb-6"
+              style={{
+                fontFamily: "var(--font-cormorant, Georgia, serif)",
+                fontSize: "clamp(2rem,5vw,3.4rem)",
+                fontWeight: 400, color: "#1A1209", lineHeight: 1.1,
+              }}
+            >
+              Print solutions for <em style={{ fontStyle: "italic", color: "#B5882A" }}>every need</em>.
+            </h2>
+            <p className="text-sm lg:text-base leading-relaxed max-w-lg mx-auto mb-10" style={{ color: "#8B7355", fontWeight: 300 }}>
+              Nine offerings — from business cards and brochures to large-format hoardings,
+              specialty foils, and post-print finishing. All under one roof.
+            </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => (
-              <motion.div
-                key={s.title}
-                variants={fadeUp} initial="hidden" whileInView="show"
-                viewport={{ once: true }} transition={{ delay: i * 0.06 }}
-                className="group relative p-8 transition-all duration-350 overflow-hidden cursor-pointer"
-                style={{
-                  borderBottom: "1px solid rgba(181,136,42,0.13)",
-                  borderRight: (i % 3 !== 2) ? "1px solid rgba(181,136,42,0.13)" : "none",
-                }}
-                onClick={() => handleEnquire(s.title)}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.background = "rgba(181,136,42,0.04)";
-                  el.style.boxShadow = "inset 3px 0 0 #B5882A";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.background = "transparent";
-                  el.style.boxShadow = "none";
-                }}
-              >
-                <div
-                  className="absolute -right-1 -bottom-2 text-[7rem] leading-none pointer-events-none select-none transition-all duration-500 group-hover:opacity-100"
-                  style={{
-                    fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    color: "rgba(181,136,42,0.05)",
-                    fontWeight: 700,
-                    opacity: 0,
-                  }}
-                >
-                  {s.num}
-                </div>
-
-                <div
-                  className="mb-5 w-9 h-9 flex items-center justify-center transition-all duration-300 group-hover:border-[#B5882A]"
-                  style={{ border: "1px solid rgba(181,136,42,0.22)", color: "#B5882A" }}
-                >
-                  <s.Icon className="w-4 h-4" />
-                </div>
-
-                <div className="text-[10px] tracking-[0.2em] uppercase mb-3" style={{ color: "rgba(181,136,42,0.55)" }}>
-                  {s.num}
-                </div>
-                <h3
-                  className="mb-3"
-                  style={{
-                    fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    fontSize: "1.35rem", fontWeight: 500, color: "#1A1209", lineHeight: 1.2,
-                  }}
+            {/* Service names in a quiet inline list */}
+            <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-10 max-w-2xl mx-auto">
+              {SERVICES.map((s) => (
+                <span
+                  key={s.title}
+                  className="text-[10px] tracking-[0.22em] uppercase"
+                  style={{ color: "rgba(139,115,85,0.7)" }}
                 >
                   {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#8B7355", fontWeight: 300 }}>
-                  {s.desc}
-                </p>
-                {/* Working Enquire button (functional, not just hover-label) */}
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); handleEnquire(s.title); }}
-                  className="mt-5 inline-flex items-center gap-2 text-[11px] tracking-wider uppercase opacity-60 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
-                  style={{ color: "#B5882A" }}
-                >
-                  Enquire <ChevronRight className="w-3 h-3" />
-                </button>
-              </motion.div>
-            ))}
-          </div>
+                </span>
+              ))}
+            </div>
+
+            <MagneticButton
+              as="a" href="/services"
+              className="inline-flex items-center px-7 py-3 text-[11px] tracking-[0.2em] uppercase font-medium border"
+              style={{ borderColor: "#B5882A", color: "#B5882A" }}
+            >
+              See All Services <ChevronRight className="w-3.5 h-3.5 ml-2" />
+            </MagneticButton>
+          </motion.div>
         </div>
       </section>
 
       {/* ── PORTFOLIO ──────────────────────────────────────────────── */}
-      <section id="our-work" className="py-28 lg:py-36" style={{ background: "#FAF7F1" }}>
+      <section id="our-work" className="py-24 lg:py-32" style={{ background: "#FAF7F1" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
@@ -387,17 +312,12 @@ export default function VishalOffsetPage() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.28 }}
                 >
-                  <TiltCard
-                    className="block"
-                    max={7}
-                    scale={1.03}
-                  >
+                  <TiltCard className="block" max={7} scale={1.03}>
                     <div
                       className="aspect-square relative overflow-hidden group cursor-pointer"
                       style={{ background: item.tone }}
                       onClick={scrollToContact}
                     >
-                      {/* Photo backdrop */}
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={item.image}
@@ -405,7 +325,6 @@ export default function VishalOffsetPage() {
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      {/* Tone tint overlay */}
                       <div
                         aria-hidden
                         className="absolute inset-0"
@@ -414,7 +333,6 @@ export default function VishalOffsetPage() {
                           mixBlendMode: "multiply",
                         }}
                       />
-                      {/* Halftone */}
                       <div
                         className="absolute inset-0 opacity-[0.06]"
                         style={{
@@ -422,7 +340,6 @@ export default function VishalOffsetPage() {
                           backgroundSize: "18px 18px",
                         }}
                       />
-                      {/* Category pill */}
                       <div className="absolute top-3 left-3 z-10 group-hover:opacity-0 transition-opacity duration-300">
                         <span
                           className="px-2 py-0.5 text-[10px] tracking-wider uppercase"
@@ -431,7 +348,6 @@ export default function VishalOffsetPage() {
                           {item.category}
                         </span>
                       </div>
-                      {/* Hover overlay */}
                       <div
                         className="absolute inset-0 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{ background: "linear-gradient(to top, rgba(10,7,4,0.97) 0%, rgba(10,7,4,0.82) 50%, rgba(10,7,4,0.28) 100%)" }}
@@ -485,8 +401,8 @@ export default function VishalOffsetPage() {
         </div>
       </section>
 
-      {/* ── PROCESS ────────────────────────────────────────────────── */}
-      <section id="process" className="py-28 lg:py-36" style={{ background: "#100D08" }}>
+      {/* ── PROCESS — minimalist ────────────────────────────────────── */}
+      <section id="process" className="py-24 lg:py-32" style={{ background: "#100D08" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-12">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
@@ -496,12 +412,12 @@ export default function VishalOffsetPage() {
               <h2
                 style={{
                   fontFamily: "var(--font-cormorant, Georgia, serif)",
-                  fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                  fontSize: "clamp(2.2rem,5vw,3.6rem)",
                   fontWeight: 400, color: "#F7F2EA", lineHeight: 1.05,
                 }}
               >
-                From Brief to
-                <em style={{ fontStyle: "italic", color: "#C9A45A" }}> Delivery</em>
+                From brief to
+                <em style={{ fontStyle: "italic", color: "#C9A45A" }}> delivery</em>
               </h2>
             </motion.div>
           </div>
@@ -559,11 +475,11 @@ export default function VishalOffsetPage() {
       </section>
 
       {/* ── TESTIMONIALS ───────────────────────────────────────────── */}
-      <section className="py-28 lg:py-36" style={{ background: "#F7F2EA" }}>
+      <section className="py-24 lg:py-32" style={{ background: "#F7F2EA" }}>
         <div className="max-w-4xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-14"
           >
             <p className="text-[11px] tracking-[0.28em] uppercase mb-4" style={{ color: "#B5882A" }}>
               Client Reviews
@@ -571,42 +487,35 @@ export default function VishalOffsetPage() {
             <h2
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2.2rem,5vw,3.6rem)",
                 fontWeight: 400, color: "#1A1209", lineHeight: 1.05,
               }}
             >
-              What Clients Say
+              What clients say
             </h2>
-            <div
-              className="inline-flex items-center gap-3 mt-6 px-6 py-2.5"
-              style={{ border: "1px solid rgba(181,136,42,0.26)", background: "rgba(181,136,42,0.05)" }}
-            >
-              <span style={{ color: "#C9A45A", fontSize: "1rem", letterSpacing: "0.1em" }}>★★★★★</span>
-              <span className="text-sm" style={{ color: "#8B7355", fontWeight: 300 }}>4.6 · Google Reviews</span>
-            </div>
           </motion.div>
 
-          <div className="relative min-h-[220px]">
+          <div className="relative min-h-[200px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTestimonial}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.48, ease: "easeOut" }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
                 className="text-center px-4 lg:px-16"
               >
                 <div
                   style={{
                     fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    fontSize: "5.5rem", lineHeight: 0.65, color: "rgba(181,136,42,0.15)",
-                    marginBottom: "1.5rem", userSelect: "none",
+                    fontSize: "5rem", lineHeight: 0.6, color: "rgba(181,136,42,0.14)",
+                    marginBottom: "1.25rem", userSelect: "none",
                   }}
                 >
                   &ldquo;
                 </div>
                 <p
-                  className="text-xl lg:text-2xl leading-relaxed mb-8"
+                  className="text-lg lg:text-xl leading-relaxed mb-7"
                   style={{
                     fontFamily: "var(--font-cormorant, Georgia, serif)",
                     color: "#1A1209", fontWeight: 400, fontStyle: "italic",
@@ -614,11 +523,11 @@ export default function VishalOffsetPage() {
                 >
                   {TESTIMONIALS[activeTestimonial].text}
                 </p>
-                <div className="w-8 h-px mx-auto mb-5" style={{ background: "#B5882A" }} />
+                <div className="w-6 h-px mx-auto mb-4" style={{ background: "#B5882A" }} />
                 <div
                   style={{
                     fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    fontSize: "1.1rem", color: "#1A1209", fontWeight: 500,
+                    fontSize: "1.05rem", color: "#1A1209", fontWeight: 500,
                   }}
                 >
                   {TESTIMONIALS[activeTestimonial].name}
@@ -633,7 +542,7 @@ export default function VishalOffsetPage() {
           <div className="flex items-center justify-center gap-6 mt-10">
             <button
               onClick={() => setActiveTestimonial((p) => (p - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
-              className="w-9 h-9 flex items-center justify-center border transition-all duration-200"
+              className="w-8 h-8 flex items-center justify-center border transition-all duration-200"
               style={{ borderColor: "rgba(181,136,42,0.28)", color: "rgba(181,136,42,0.45)" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = "#B5882A";
@@ -645,7 +554,7 @@ export default function VishalOffsetPage() {
               }}
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5" />
             </button>
             <div className="flex gap-2 items-center">
               {TESTIMONIALS.map((_, i) => (
@@ -654,8 +563,8 @@ export default function VishalOffsetPage() {
                   onClick={() => setActiveTestimonial(i)}
                   className="rounded-full transition-all duration-300"
                   style={{
-                    width: i === activeTestimonial ? 22 : 6,
-                    height: 6,
+                    width: i === activeTestimonial ? 20 : 5,
+                    height: 5,
                     background: i === activeTestimonial ? "#B5882A" : "rgba(181,136,42,0.22)",
                   }}
                   aria-label={`Testimonial ${i + 1}`}
@@ -664,7 +573,7 @@ export default function VishalOffsetPage() {
             </div>
             <button
               onClick={() => setActiveTestimonial((p) => (p + 1) % TESTIMONIALS.length)}
-              className="w-9 h-9 flex items-center justify-center border transition-all duration-200"
+              className="w-8 h-8 flex items-center justify-center border transition-all duration-200"
               style={{ borderColor: "rgba(181,136,42,0.28)", color: "rgba(181,136,42,0.45)" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = "#B5882A";
@@ -676,27 +585,27 @@ export default function VishalOffsetPage() {
               }}
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-8">
             <a
               href="https://maps.google.com"
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase transition-colors"
+              className="inline-flex items-center gap-2 text-[10px] tracking-[0.22em] uppercase transition-colors"
               style={{ color: "rgba(181,136,42,0.5)" }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#B5882A")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(181,136,42,0.5)")}
             >
-              Read All Reviews on Google <ExternalLink className="w-3 h-3" />
+              Read on Google <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>
       </section>
 
       {/* ── ABOUT ──────────────────────────────────────────────────── */}
-      <section id="about" className="py-28 lg:py-36" style={{ background: "#FAF7F1" }}>
+      <section id="about" className="py-24 lg:py-32" style={{ background: "#FAF7F1" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <motion.div
@@ -710,31 +619,30 @@ export default function VishalOffsetPage() {
                 className="mb-8"
                 style={{
                   fontFamily: "var(--font-cormorant, Georgia, serif)",
-                  fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                  fontSize: "clamp(2.2rem,5vw,3.6rem)",
                   fontWeight: 400, color: "#1A1209", lineHeight: 1.05,
                 }}
               >
-                A Legacy of<br />
-                <em style={{ fontStyle: "italic", color: "#B5882A" }}>Craft & Precision</em>
+                A legacy of<br />
+                <em style={{ fontStyle: "italic", color: "#B5882A" }}>craft & precision</em>
               </h2>
               <p className="text-base leading-relaxed mb-5" style={{ color: "#5C4A2A", fontWeight: 300 }}>
-                Vishal Offset is a technically sound printing house based in Vadodara, Gujarat.
-                Founded in 1998, the press has spent over 25 years building a reputation for
-                measured craft, discipline, and unwavering output quality.
+                Vishal Offset is a technically sound printing house based in Vadodara,
+                Gujarat. Founded in 1998, the press has spent over 25 years building a
+                reputation for measured craft, discipline, and unwavering output quality.
               </p>
               <p className="text-base leading-relaxed mb-10" style={{ color: "#5C4A2A", fontWeight: 300 }}>
-                We serve corporates, institutions, agencies, and individuals across Gujarat. The
-                facility runs an offset press with a comprehensive finishing setup — all overseen
-                personally by the founder, with the discipline that only a hands-on owner brings.
+                Now in its third generation, the press is overseen personally by
+                Mr. Vishal Nimbalkar, with the discipline that only a hands-on owner brings.
               </p>
 
               <div className="space-y-6">
                 {[
                   { v: "25+", l: "Years Active",       pct: 100 },
-                  { v: "1",   l: "Founder, Hands-On",  pct: 85  },
+                  { v: "3",   l: "Generations of Craft", pct: 85  },
                   { v: "500+",l: "Clients",             pct: 90  },
                 ].map((s, i) => (
-                  <div key={s.v}>
+                  <div key={s.l}>
                     <div className="flex items-baseline justify-between mb-1.5">
                       <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: "#8B7355" }}>{s.l}</span>
                       <span style={{ fontFamily: "var(--font-cormorant, Georgia, serif)", fontSize: "1.4rem", fontWeight: 300, color: "#B5882A" }}>
@@ -756,7 +664,6 @@ export default function VishalOffsetPage() {
               </div>
             </motion.div>
 
-            {/* About image + features */}
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="show"
               viewport={{ once: true }} transition={{ delay: 0.15 }}
@@ -778,10 +685,10 @@ export default function VishalOffsetPage() {
               </div>
 
               {[
-                { Icon: CheckCircle, title: "Consistent Output Quality",   desc: "Every job is personally checked at prepress, press, and finishing before it leaves the facility." },
-                { Icon: Award,       title: "Founder-Run Press",           desc: "Twenty-five years of hands-on offset craft — every job receives the founder's personal attention." },
-                { Icon: Users,       title: "End-to-End Service",          desc: "Design, proofing, production, and delivery — one press, one roof, one point of accountability." },
-                { Icon: Clock3,      title: "Deadline Integrity",          desc: "Your deadline is treated as ours. Express turnarounds available for time-critical requirements." },
+                { Icon: CheckCircle, title: "Consistent Output Quality", desc: "Every job is personally checked at prepress, press, and finishing before it leaves the facility." },
+                { Icon: Award,       title: "Founder-Run Press",         desc: "Twenty-five years of hands-on offset craft — every job receives the founder's personal attention." },
+                { Icon: Users,       title: "End-to-End Service",        desc: "Design, proofing, production, and delivery — one press, one roof, one point of accountability." },
+                { Icon: Clock3,      title: "Deadline Integrity",        desc: "Your deadline is treated as ours. Express turnarounds available for time-critical requirements." },
               ].map(({ Icon, title, desc }, i) => (
                 <motion.div
                   key={title}
@@ -816,12 +723,12 @@ export default function VishalOffsetPage() {
         </div>
       </section>
 
-      {/* ── EQUIPMENT MARQUEE ──────────────────────────────────────── */}
+      {/* ── EQUIPMENT MARQUEE — single row, quieter ─────────────────── */}
       <section
         className="overflow-hidden"
         style={{ background: "#1A1209", borderTop: "1px solid rgba(181,136,42,0.12)", borderBottom: "1px solid rgba(181,136,42,0.12)" }}
       >
-        <div className="py-3 flex gap-0 anim-marquee whitespace-nowrap" style={{ borderBottom: "1px solid rgba(181,136,42,0.07)" }}>
+        <div className="py-4 flex gap-0 anim-marquee whitespace-nowrap">
           {[...EQUIPMENT, ...EQUIPMENT].map((eq, i) => (
             <span
               key={i}
@@ -833,25 +740,10 @@ export default function VishalOffsetPage() {
             </span>
           ))}
         </div>
-        <div
-          className="py-3 flex gap-0 whitespace-nowrap"
-          style={{ animation: "marquee 32s linear infinite reverse" }}
-        >
-          {[...EQUIPMENT, ...EQUIPMENT].map((eq, i) => (
-            <span
-              key={i}
-              className="shrink-0 text-[10px] tracking-[0.22em] uppercase"
-              style={{ color: "rgba(181,136,42,0.22)", padding: "0 1.75rem" }}
-            >
-              {eq}
-              <span style={{ color: "rgba(181,136,42,0.12)", marginLeft: "1.75rem" }}>·</span>
-            </span>
-          ))}
-        </div>
       </section>
 
       {/* ── QUOTE FORM ─────────────────────────────────────────────── */}
-      <section id="contact-form" className="py-28 lg:py-36" style={{ background: "#F7F2EA" }}>
+      <section id="contact-form" className="py-24 lg:py-32" style={{ background: "#F7F2EA" }}>
         <div className="max-w-3xl mx-auto px-6 lg:px-10">
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
@@ -864,7 +756,7 @@ export default function VishalOffsetPage() {
               className="mb-4"
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(2.2rem,5vw,3.8rem)",
+                fontSize: "clamp(2.2rem,5vw,3.6rem)",
                 fontWeight: 400, color: "#1A1209", lineHeight: 1.05,
               }}
             >
@@ -962,7 +854,7 @@ export default function VishalOffsetPage() {
                   >
                     <option value="">Select a service</option>
                     {SERVICES.map((s) => <option key={s.title} value={s.title}>{s.title}</option>)}
-                    <option value="Custom Gifting">Custom Gifting</option>
+                    <option value="Sajavvat — Envelopes / Decor / Gifting">Sajavvat — Envelopes / Decor / Gifting</option>
                   </select>
                 </div>
                 <div>
