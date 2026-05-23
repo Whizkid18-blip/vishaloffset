@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 56" fill="none">
+  <!-- V chevron mark -->
+  <path d="M7 7 L18 21 L29 7" stroke="#C9A45A" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Vertical spine -->
+  <rect x="17" y="7" width="2" height="32" rx="1" fill="#C9A45A" opacity="0.15"/>
+  <!-- Press rollers -->
+  <rect x="4" y="24" width="28" height="3.5" rx="1.75" fill="#C9A45A"/>
+  <rect x="4" y="30" width="28" height="3.5" rx="1.75" fill="#C9A45A" opacity="0.62"/>
+  <rect x="4" y="36" width="28" height="3.5" rx="1.75" fill="#C9A45A" opacity="0.32"/>
+  <!-- Wordmark -->
+  <text
+    x="44"
+    y="33"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="20"
+    font-weight="400"
+    letter-spacing="1.8"
+    fill="#F7F2EA"
+  >VISHAL OFFSET</text>
+  <!-- Rule -->
+  <line x1="44" y1="39" x2="238" y2="39" stroke="#C9A45A" stroke-width="0.6" opacity="0.4"/>
+  <!-- Tagline -->
+  <text
+    x="44"
+    y="51"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="8.5"
+    font-style="italic"
+    letter-spacing="2.5"
+    fill="#C9A45A"
+    opacity="0.6"
+  >Printing That Speaks</text>
+</svg>
