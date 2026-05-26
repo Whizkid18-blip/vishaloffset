@@ -3,22 +3,22 @@
 import { useState, useEffect, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MapPin, Phone, Mail, Clock, Globe, Share2, ExternalLink,
+  MapPin, Phone, Mail, Clock, ExternalLink,
   ArrowUp, MessageCircle,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { NAV_LINKS, SERVICES, CONTACT } from "@/lib/data";
+import { CONTACT } from "@/lib/data";
 
-/** Row used inside the "Visit Our Press" contact block. */
+/** Compact row used inside the contact column. */
 function ContactRow({ Icon, label, children }: { Icon: LucideIcon; label: string; children: ReactNode }) {
   return (
     <div className="flex gap-4">
       <div
-        className="w-9 h-9 flex items-center justify-center shrink-0"
+        className="w-8 h-8 flex items-center justify-center shrink-0"
         style={{ border: "1px solid rgba(181,136,42,0.22)", color: "#B5882A" }}
       >
-        <Icon className="w-4 h-4" />
+        <Icon className="w-3.5 h-3.5" />
       </div>
       <div className="flex-1 text-sm leading-relaxed" style={{ fontWeight: 300 }}>
         <div className="text-[10px] tracking-[0.22em] uppercase mb-1" style={{ color: "rgba(181,136,42,0.55)" }}>
@@ -31,8 +31,9 @@ function ContactRow({ Icon, label, children }: { Icon: LucideIcon; label: string
 }
 
 /**
- * Map + Footer + Floating CTAs.
- * Self-contained — drop at the bottom of any page.
+ * Slim 2-column footer:  [ Map ]  [ Contact column ]
+ * Below: small attribution strip.
+ * Plus: floating WhatsApp / Call / Top buttons.
  */
 export default function Footer() {
   const [showTop, setShowTop] = useState(false);
@@ -47,267 +48,144 @@ export default function Footer() {
 
   return (
     <>
-      {/* ── MAP + CONTACT SECTION ──────────────────────────────────── */}
+      {/* ── MAP + CONTACT (the only footer block now) ──────────────── */}
       <section
         id="visit"
         className="relative overflow-hidden"
         style={{ background: "#100D08", borderTop: "1px solid rgba(181,136,42,0.12)" }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
-          {/* Map */}
-          <div className="lg:col-span-3 relative h-[420px] lg:h-[520px]" style={{ background: "#1A1209" }}>
-            <iframe
-              title="Vishal Offset location — Ajwa Road, Vadodara"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=73.1850%2C22.3050%2C73.2350%2C22.3450&layer=mapnik&marker=22.3220%2C73.2090"
-              width="100%"
-              height="100%"
-              style={{
-                border: 0,
-                filter: "grayscale(0.45) contrast(1.05) brightness(0.85) sepia(0.18) hue-rotate(-12deg)",
-              }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            {/* Decorative inner frame */}
-            <div
-              aria-hidden
-              className="absolute inset-3 pointer-events-none"
-              style={{ border: "1px solid rgba(181,136,42,0.2)" }}
-            />
-          </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
 
-          {/* Contact details */}
-          <div className="lg:col-span-2 px-8 lg:px-12 py-14 lg:py-20 flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-[11px] tracking-[0.28em] uppercase mb-4" style={{ color: "#B5882A" }}>
-                Visit Our Press
-              </p>
-              <h2
-                style={{
-                  fontFamily: "var(--font-cormorant, Georgia, serif)",
-                  fontSize: "clamp(1.9rem,3.2vw,2.8rem)",
-                  fontWeight: 400, color: "#F7F2EA", lineHeight: 1.1,
-                }}
-                className="mb-8"
+            {/* Map (left, 7/12) */}
+            <div className="lg:col-span-7">
+              <div
+                className="relative w-full overflow-hidden"
+                style={{ aspectRatio: "16 / 10", background: "#1A1209" }}
               >
-                Find us on<br />
-                <em style={{ fontStyle: "italic", color: "#C9A45A" }}>Ajwa Road</em>
-              </h2>
-
-              <div className="space-y-5">
-                {/* Address */}
-                <ContactRow Icon={MapPin} label="Address">
-                  <a
-                    href={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}`}
-                    target="_blank" rel="noopener noreferrer"
-                    className="block whitespace-pre-line transition-colors hover:text-[#C9A45A]"
-                    style={{ color: "rgba(247,242,234,0.7)" }}
-                  >
-                    {`${CONTACT.address1}\n${CONTACT.address2}`}
-                  </a>
-                </ContactRow>
-
-                {/* Phones — both clickable tel: */}
-                <ContactRow Icon={Phone} label="Phone">
-                  <a
-                    href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
-                    className="block transition-colors hover:text-[#C9A45A]"
-                    style={{ color: "rgba(247,242,234,0.7)" }}
-                  >
-                    {CONTACT.phone1}
-                  </a>
-                  <a
-                    href={`tel:${CONTACT.phone2.replace(/\s|-/g, "")}`}
-                    className="block transition-colors hover:text-[#C9A45A]"
-                    style={{ color: "rgba(247,242,234,0.7)" }}
-                  >
-                    {CONTACT.phone2}
-                  </a>
-                </ContactRow>
-
-                {/* Email — mailto: */}
-                <ContactRow Icon={Mail} label="Email">
-                  <a
-                    href={`mailto:${CONTACT.email}`}
-                    className="block transition-colors hover:text-[#C9A45A] break-all"
-                    style={{ color: "rgba(247,242,234,0.7)" }}
-                  >
-                    {CONTACT.email}
-                  </a>
-                </ContactRow>
-
-                {/* Hours — plain text */}
-                <ContactRow Icon={Clock} label="Hours">
-                  <p
-                    className="whitespace-pre-line"
-                    style={{ color: "rgba(247,242,234,0.7)", fontWeight: 300 }}
-                  >
-                    {`${CONTACT.hours}\n${CONTACT.hoursAlt}`}
-                  </p>
-                </ContactRow>
+                <iframe
+                  title="Vishal Offset location — Ajwa Road, Vadodara"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=73.1850%2C22.3050%2C73.2350%2C22.3450&layer=mapnik&marker=22.3220%2C73.2090"
+                  width="100%"
+                  height="100%"
+                  style={{
+                    border: 0,
+                    filter: "grayscale(0.45) contrast(1.05) brightness(0.85) sepia(0.18) hue-rotate(-12deg)",
+                  }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-3 pointer-events-none"
+                  style={{ border: "1px solid rgba(181,136,42,0.22)" }}
+                />
               </div>
-
               <a
                 href={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}`}
                 target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-8 text-[11px] tracking-[0.2em] uppercase transition-colors"
+                className="inline-flex items-center gap-2 mt-5 text-[10px] tracking-[0.25em] uppercase transition-colors"
                 style={{ color: "#B5882A" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#C9A45A")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#B5882A")}
               >
                 Open in Google Maps <ExternalLink className="w-3 h-3" />
               </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOOTER ─────────────────────────────────────────────────── */}
-      <footer id="contact" style={{ background: "#0B0907" }}>
-        <div
-          className="max-w-7xl mx-auto px-6 lg:px-10 py-14"
-          style={{ borderBottom: "1px solid rgba(181,136,42,0.08)" }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-4">
-              <Link href="/" className="inline-block mb-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo-light.svg" alt="Vishal Offset" style={{ height: 42, width: "auto" }} />
-              </Link>
-              <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}>
-                Precision offset printing for brands, businesses, and institutions
-                across Gujarat. A legacy of craft and quality since 1998.
-              </p>
-              <div className="flex gap-3">
-                {[Globe, Share2, ExternalLink].map((Icon, i) => (
-                  <a
-                    key={i} href="#"
-                    className="w-8 h-8 flex items-center justify-center transition-all duration-200"
-                    style={{ border: "1px solid rgba(181,136,42,0.15)", color: "rgba(181,136,42,0.32)" }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "#B5882A";
-                      (e.currentTarget as HTMLAnchorElement).style.color = "#B5882A";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(181,136,42,0.15)";
-                      (e.currentTarget as HTMLAnchorElement).style.color = "rgba(181,136,42,0.32)";
-                    }}
-                    aria-label="Social link"
-                  >
-                    <Icon className="w-3 h-3" />
-                  </a>
-                ))}
-              </div>
             </div>
 
-            <div className="lg:col-span-2">
-              <div className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ color: "rgba(181,136,42,0.5)" }}>
-                Navigation
-              </div>
-              <div className="space-y-2.5">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href} href={link.href}
-                    className="block text-[12px] transition-colors"
-                    style={{ color: "rgba(247,242,234,0.25)", fontWeight: 300 }}
-                  >
-                    <span
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLSpanElement).style.color = "rgba(247,242,234,0.65)")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLSpanElement).style.color = "rgba(247,242,234,0.25)")}
+            {/* Contact column (right, 5/12) */}
+            <div className="lg:col-span-5">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-[10px] tracking-[0.28em] uppercase mb-4" style={{ color: "#B5882A" }}>
+                  Visit Our Press
+                </p>
+                <h2
+                  className="mb-8"
+                  style={{
+                    fontFamily: "var(--font-cormorant, Georgia, serif)",
+                    fontSize: "clamp(1.7rem, 3vw, 2.4rem)",
+                    fontWeight: 400, color: "#F7F2EA", lineHeight: 1.1,
+                  }}
+                >
+                  Find us on<br />
+                  <em style={{ fontStyle: "italic", color: "#C9A45A" }}>Ajwa Road</em>
+                </h2>
+
+                <div className="space-y-4">
+                  <ContactRow Icon={MapPin} label="Address">
+                    <a
+                      href={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}`}
+                      target="_blank" rel="noopener noreferrer"
+                      className="block whitespace-pre-line transition-colors hover:text-[#C9A45A]"
+                      style={{ color: "rgba(247,242,234,0.65)" }}
                     >
-                      {link.label}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
+                      {`${CONTACT.address1}\n${CONTACT.address2}`}
+                    </a>
+                  </ContactRow>
 
-            <div className="lg:col-span-2">
-              <div className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ color: "rgba(181,136,42,0.5)" }}>
-                Services
-              </div>
-              <div className="space-y-2.5">
-                {SERVICES.slice(0, 6).map((s) => (
-                  <div key={s.title} className="text-[12px]" style={{ color: "rgba(247,242,234,0.25)", fontWeight: 300 }}>
-                    {s.title}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:col-span-4">
-              <div className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ color: "rgba(181,136,42,0.5)" }}>
-                Contact
-              </div>
-              <div className="space-y-4 text-[12px] leading-relaxed">
-                <div className="flex gap-3">
-                  <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
-                  <a
-                    href={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}`}
-                    target="_blank" rel="noopener noreferrer"
-                    className="whitespace-pre-line transition-colors hover:text-[#B5882A]"
-                    style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
-                  >
-                    {`${CONTACT.address1}\n${CONTACT.address2}`}
-                  </a>
-                </div>
-
-                <div className="flex gap-3">
-                  <Phone className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
-                  <div>
+                  <ContactRow Icon={Phone} label="Phone">
                     <a
                       href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
-                      className="block transition-colors hover:text-[#B5882A]"
-                      style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
+                      className="block transition-colors hover:text-[#C9A45A]"
+                      style={{ color: "rgba(247,242,234,0.65)" }}
                     >
                       {CONTACT.phone1}
                     </a>
                     <a
                       href={`tel:${CONTACT.phone2.replace(/\s|-/g, "")}`}
-                      className="block transition-colors hover:text-[#B5882A]"
-                      style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
+                      className="block transition-colors hover:text-[#C9A45A]"
+                      style={{ color: "rgba(247,242,234,0.65)" }}
                     >
                       {CONTACT.phone2}
                     </a>
-                  </div>
-                </div>
+                  </ContactRow>
 
-                <div className="flex gap-3">
-                  <Mail className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
-                  <a
-                    href={`mailto:${CONTACT.email}`}
-                    className="break-all transition-colors hover:text-[#B5882A]"
-                    style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}
-                  >
-                    {CONTACT.email}
-                  </a>
-                </div>
+                  <ContactRow Icon={Mail} label="Email">
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      className="block transition-colors hover:text-[#C9A45A] break-all"
+                      style={{ color: "rgba(247,242,234,0.65)" }}
+                    >
+                      {CONTACT.email}
+                    </a>
+                  </ContactRow>
 
-                <div className="flex gap-3">
-                  <Clock className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "rgba(181,136,42,0.4)" }} />
-                  <p className="whitespace-pre-line" style={{ color: "rgba(247,242,234,0.28)", fontWeight: 300 }}>
-                    {`${CONTACT.hours}\n${CONTACT.hoursAlt}`}
-                  </p>
+                  <ContactRow Icon={Clock} label="Hours">
+                    <p
+                      className="whitespace-pre-line"
+                      style={{ color: "rgba(247,242,234,0.65)", fontWeight: 300 }}
+                    >
+                      {`${CONTACT.hours}\n${CONTACT.hoursAlt}`}
+                    </p>
+                  </ContactRow>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[11px] tracking-wider" style={{ color: "rgba(247,242,234,0.12)", fontWeight: 300 }}>
-            © {new Date().getFullYear()} Vishal Offset. All rights reserved.
-          </p>
-          <p className="text-[11px] tracking-wider" style={{ color: "rgba(181,136,42,0.2)" }}>
-            C-1 Sardar Estate · Ajwa Road · Vadodara · Gujarat 390 019
+        {/* Bottom attribution strip */}
+        <div
+          className="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-3"
+          style={{ borderTop: "1px solid rgba(181,136,42,0.08)" }}
+        >
+          <Link href="/" className="inline-flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-light.svg" alt="Vishal Offset" style={{ height: 28, width: "auto", opacity: 0.7 }} />
+          </Link>
+          <p className="text-[10px] tracking-[0.25em] uppercase" style={{ color: "rgba(247,242,234,0.22)" }}>
+            © {new Date().getFullYear()} Vishal Offset · Vadodara
           </p>
         </div>
-      </footer>
+
+        {/* Anchor for legacy contact links */}
+        <span id="contact" aria-hidden style={{ position: "absolute", bottom: 0, opacity: 0 }} />
+      </section>
 
       {/* ── FLOATING CTAs ──────────────────────────────────────────── */}
       <AnimatePresence>

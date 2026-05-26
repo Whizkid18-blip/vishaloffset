@@ -144,14 +144,6 @@ export default function Navbar({ variant = "home" }: Props) {
           </div>
 
           <div className="flex items-center gap-4">
-            <a
-              href="tel:+919898010552"
-              className="hidden lg:flex items-center gap-1.5 text-[11px] tracking-wider transition-colors"
-              style={{ color: scrolled ? "#B5882A" : "rgba(247,242,234,0.45)" }}
-            >
-              <Phone className="w-3 h-3" />
-              +91 98980 10552
-            </a>
             <Link
               href="/#contact"
               onClick={(e) => handleNavClick("/#contact", e)}
