@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MagneticButton from "@/components/MagneticButton";
-import { SERVICES } from "@/lib/data";
+import { SERVICES, MATERIALS, EQUIPMENT } from "@/lib/data";
 
 export default function ServicesPage() {
   return (
@@ -98,6 +98,59 @@ export default function ServicesPage() {
               </p>
             </motion.div>
           ))}
+
+          {/* ── Proof-of-capacity strips ── */}
+          <div className="mt-24 lg:mt-32 space-y-10">
+            {/* Materials */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="flex flex-wrap items-baseline gap-x-4 gap-y-2"
+              style={{ borderTop: "1px solid rgba(181,136,42,0.18)", paddingTop: "1.5rem" }}
+            >
+              <span
+                className="text-[10px] tracking-[0.28em] uppercase shrink-0"
+                style={{ color: "#B5882A", fontStyle: "italic" }}
+              >
+                Prints on
+              </span>
+              {MATERIALS.map((m, i) => (
+                <span key={m} className="text-[11px] tracking-[0.18em] uppercase" style={{ color: "rgba(139,115,85,0.85)" }}>
+                  {m}
+                  {i < MATERIALS.length - 1 && (
+                    <span style={{ color: "rgba(181,136,42,0.35)", marginLeft: "1rem" }}>·</span>
+                  )}
+                </span>
+              ))}
+            </motion.div>
+
+            {/* Equipment */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="flex flex-wrap items-baseline gap-x-4 gap-y-2"
+              style={{ borderTop: "1px solid rgba(181,136,42,0.18)", paddingTop: "1.5rem" }}
+            >
+              <span
+                className="text-[10px] tracking-[0.28em] uppercase shrink-0"
+                style={{ color: "#B5882A", fontStyle: "italic" }}
+              >
+                On the floor
+              </span>
+              {EQUIPMENT.map((e, i) => (
+                <span key={e} className="text-[11px] tracking-[0.18em] uppercase" style={{ color: "rgba(139,115,85,0.85)" }}>
+                  {e}
+                  {i < EQUIPMENT.length - 1 && (
+                    <span style={{ color: "rgba(181,136,42,0.35)", marginLeft: "1rem" }}>·</span>
+                  )}
+                </span>
+              ))}
+            </motion.div>
+          </div>
 
           {/* Single CTA at the bottom */}
           <div className="mt-20 text-center">

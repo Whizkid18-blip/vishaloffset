@@ -119,6 +119,26 @@ export const SAJAVVAT_CATEGORIES: SajavvatCategory[] = [
   },
 ];
 
+// ─── MATERIALS & EQUIPMENT (proof-of-capacity strips on /services) ─
+export const MATERIALS = [
+  "Vinyl", "Translite", "Canvas", "Coated Paper", "Flex",
+  "Silver Foil", "Gold Foil", "Satin",
+];
+
+export const EQUIPMENT = [
+  "Roland Eco-Solvent 5ft",
+  "Multi-Colour Image Runner",
+  "High-Speed Offset",
+  "Auto Insert Folder",
+  "Program Cutter",
+  "UV Coater",
+  "Die Cutting",
+  "Lamination",
+  "Spiral Binding",
+  "Saddle Stitching",
+  "Digital Wide-Format",
+];
+
 // ─── LEGACY / THREE GENERATIONS ───────────────────────────────────
 export type TeamMember = {
   initials: string;
